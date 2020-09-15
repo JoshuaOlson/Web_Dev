@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sliding Image on Hover</title>
+
+    <style>
+        body {
+            background-color: #EEE;
+            text-align: center;
+        }
+
+        .pictureContainer {
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .pictureContainer img {
+            transition: transform .2s ease-in-out;
+        }
+
+        .pictureContainer img:hover {
+            transform: translate3d(0px, -300px, 0px);
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- makes responsive for mobile -->
+</head>
+
+<body>
+    <div class="pictureContainer">
+        <img class="image" alt="Joshua Profile" src="Joshua_both_sm.png"> <!-- image width 589 height 1178 -->
+    </div>
+</body>
+
+</html>

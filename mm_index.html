@@ -1,0 +1,453 @@
+{% extends "pages/main.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block headerclass %} header-set {% endblock %}
+
+{% block content %}
+    <div class="content">
+        {% if stage == 'none' or stage == 'between' or stage == 'between_private' %}
+        <div class="slide-set1">
+            <div class="container pos-rel">
+                <div class="z10">
+                    <div class="title-set width-set1">Make humanity's knowledge personal and interconnected
+                        <div class="fw900">{% if stage == 'none' %}Private Sale{% elif stage == 'between_private' %}Pre-Sale{% else %}ICO{% endif %} starts in:</div>
+                    </div>
+                    {% if stage == 'between' or stage == 'between_private' %}
+                    <div class="line-progress line-progress_complete">
+                        <div class="line-progress__main">
+                            <div class="line-progress__current" style="width: {{ raised }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="fw900 margin-set2"><span class="color-green">{{ raised_usd|floatformat:0|intcomma }}</span>
+                        / {{ hard_cup|floatformat:0|intcomma }} USD (ICO Hard Cap)
+                    </div>
+                    {% endif %}
+                    <div id="CDT"></div>
+                    <div class="btns-row">
+                        {% if user.is_authenticated %}
+                            <a class="btn btn_style1" href="{% url 'cabinet:index' %}">Account</a>
+                        {% else %}
+                            <a class="btn btn_style1" href="{% url 'cabinet:login' %}">ICO Sign In</a>
+                        {% endif %}
+                        <a class="btn btn_style2" href="{% url 'pages:whitepaper' %}">White Paper</a>
+                    </div>
+	                <div style="margin-top: -10px; font-size: 18px;">
+	                    <p>MindMap Beta Platform Now Live!</p>
+	                </div>
+	                <div style="margin-top: 15px; margin-bottom: 20px;" class="btns-row">
+	                    <a class="btn btn_style1" href="{% url 'cabinet:register' %}">Sign Up & Receive 20 MIND Tokens</a>
+	                    <a class="btn btn_style2" href="{% url 'cabinet:login' %}">Login</a>
+	                </div>
+                    <div><a class="item-soc item-soc_tw" href="http://twitter.com/mindmapcoin" target="_blank"></a><a class="item-soc item-soc_fb" href="http://facebook.com/mindmapcoin" target="_blank"></a></div>
+                </div><img class="img-pos1 only-pc" src="{% static 'pages/img/widgets.png' %}" alt="">
+            </div>
+        </div>
+        {% elif stage == 'private' or stage == 'pre' or stage == 'ico' %}
+        <div class="slide-set1">
+            <div class="container pos-rel">
+                <div class="title-set">Make humanity's knowledge personal and interconnected
+                    <div class="fw900">{% if stage == 'private' %}Private Sale{% elif stage == 'pre' %}Pre-Sale{% else %}ICO{% endif %} is alive!</div>
+                </div>
+                <div class="line-progress">
+                    <div class="line-progress__main">
+                        <div class="line-progress__current" style="width: {{ raised }}%;"></div>
+                    </div>
+                </div>
+                <div class="fw900 margin-set2"><span class="color-green">{{ raised_usd|floatformat:0|intcomma }}</span>
+                    / {{ hard_cup|floatformat:0|intcomma }} USD ({% if stage == 'private' %}Private Sale{% elif stage == 'pre' %}Pre-Sale{% else %}ICO{% endif %} Hard Cap)
+                </div>
+                <div class="btns-row">
+                {% if user.is_authenticated %}
+                    <a class="btn btn_style1" href="{% url 'cabinet:index' %}">Account</a>
+                {% else %}
+                    <a class="btn btn_style1" href="{% url 'cabinet:login' %}">ICO Sign In</a>
+                {% endif %}
+                    <a class="btn btn_style2" href="{% url 'pages:whitepaper' %}">White Paper</a>
+                </div>
+                <div style="margin-top: -10px; font-size: 18px;">
+                    <p>MindMap Beta Platform Now Live!</p>
+                </div>
+                <div style="margin-top: 15px; margin-bottom: 20px;" class="btns-row">
+                    <a class="btn btn_style1" href="{% url 'cabinet:register' %}">Sign Up & Receive 20 MIND Tokens</a>
+                    <a class="btn btn_style2" href="{% url 'cabinet:login' %}">Login</a>
+                </div>
+                <div><a class="item-soc item-soc_tw" href="http://twitter.com/mindmapcoin" target="_blank"></a><a class="item-soc item-soc_fb" href="http://facebook.com/mindmapcoin" target="_blank"></a></div>
+            </div>
+        </div>
+        {% elif stage == 'post' %}
+        <div class="slide-set1">
+            <div class="container pos-rel">
+                <div class="icon-complete"><img src="{% static 'pages/img/icon-complete.png' %}" alt=""></div>
+                <div class="title-set">Make humanity's knowledge personal and interconnected
+                    <div class="fw900">ICO is successfully completed!</div>
+                </div>
+                <div class="line-progress line-progress_complete">
+                    <div class="line-progress__main">
+                        <div class="line-progress__current" style="width: {{ raised }}%;"></div>
+                    </div>
+                </div>
+                <div class="fw900 margin-set2"><span class="color-green">{{ raised_usd|floatformat:0|intcomma }}</span>
+                    / {{ hard_cup|floatformat:0|intcomma }} USD (ICO Hard Cap)
+                </div>
+                <div class="btns-row"><a class="btn btn_style2" href="{% url 'pages:whitepaper' %}">White Paper</a></div>
+                <div><a class="item-soc item-soc_tw" href="http://twitter.com/mindmapcoin" target="_blank"></a><a class="item-soc item-soc_fb" href="http://facebook.com/mindmapcoin" target="_blank"></a></div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="container margin-set1 slide-video">
+            <div class="col-set1">
+                <div class="title">What is MindMap?</div>
+                <div class="text">
+                    <p>Mindmap is the first Global decentralized tutor platform helping people turn their studies, homework and hobbies into income while others build their knowledge faster and more efficiently than ever.</p>
+                </div>
+            </div>
+            <div class="video-block">
+                <iframe width="100%" height="465" src="https://www.youtube.com/embed/DDxyKYnUlhs" frameborder="0" allowfullscreen id="video"></iframe><a class="video-overlay"><img src="{% static 'pages/img/video-preview.jpg' %}" alt=""></a>
+{#            <iframe src="https://drive.google.com/file/d/1p0BniwIilR7-YSjs6cHL6Sb4T55st5QP/preview" width="100%" height="465" frameborder="0" allowfullscreen id="video"></iframe><a class="video-overlay"><img src="{% static 'pages/img/video-preview.jpg' %}" alt=""></a>#}
+            </div>
+        </div>
+        <div class="slide-set2">
+            <div class="container">
+                <div class="title margin-set2">MindMap Features:</div>
+                <div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-1.png' %}" alt=""></div>
+                        <div class="item-info__main text">Backup your brain on your secure cloud.</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-2.png' %}" alt=""></div>
+                        <div class="item-info__main text">Digitally organize and capture everything you have learned into a searchable universal hierarchy.</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-4.png' %}" alt=""></div>
+                        <div class="item-info__main text">Save your learning path and step through it anytime to refresh your memory. Never lose what you learn!</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-6.png' %}" alt=""></div>
+                        <div class="item-info__main text">Earn passive and active income off your knowledge.</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-3.png' %}" alt=""></div>
+                        <div class="item-info__main text">Artificial intelligence will help people learn faster, better match tutors to students with compatible learning styles, and train unsupervised machine learning to learn the same way people do.</div>
+                    </div>
+                    <div class="item-info">
+                        <div class="item-info__icon"><img src="{% static 'pages/img/icon1-5.png' %}" alt=""></div>
+                        <div class="item-info__main text">Save and organize the workforce knowledge while minimizing employee transition inefficiencies with transition learning paths linked to the experts.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container margin-set3 wrapper-grafic">
+            <div class="col-set2">
+                <div class="title" id="tokensale-link">MindMap Tokensale</div>
+                <ul class="list-info">
+                    <li>Platform: <span class="fw900">Etherium (ERC-20 Token)</span></li>
+                    <li>Start of token sale: <span class="fw900">6/25/2018</span></li>
+                    <li>Tokens issued: <span class="fw900">140 000 000 MIND</span></li>
+{#                    <li>Soft Cap: <span class="fw900">XXXXXXXXX MIND</span></li>#}
+                    <li>Basic Price of 1 MIND token: <span class="fw900">0.5 USD</span></li>
+                    <li>Hard Cap: <span class="fw900">20 000 000 USD</span></li>
+                    <li>Payment method: <span class="fw900">BTC and ETH</span></li>
+                </ul>
+            </div>
+            <div class="grafic1"><img src="{% static 'pages/img/grafic1.png' %}" alt="">
+                <div class="grafic-elem grafic1__elem2">
+                    <div class="text-set">3%</div>
+                    <div>Bounty</div>
+                </div>
+                <div class="grafic-elem grafic1__elem3">
+                    <div class="text-set">7%</div>
+                    <div>Air dropped<br>to new users</div>
+                </div>
+                <div class="grafic-elem grafic1__elem5">
+                    <div class="text-set">20%</div>
+                    <div>Employees and advisors</div>
+                </div>
+                <div class="grafic-elem grafic1__elem6 color-white">
+                    <div class="text-set">70%</div>
+                    <div>ICO</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-set3">
+            <div class="container">
+                <div class="title margin-set2">How to participate in MindMap ICO</div>
+                <div>
+                    <div class="item-info2">
+                        <div class="item-info2__icon"><img src="{% static 'pages/img/icon2-1.png' %}" alt=""></div>
+                        <div class="text"><span class="fw900">Join our </span><a href="{% if user.is_authenticated %}{% url 'cabinet:whitelist_reg' %}{% else %}{% url 'cabinet:register' %}{% endif %}">WhiteList</a></span></div>
+                    </div>
+                    <div class="item-info2 item-info2_size-set">
+                        <div class="item-info2__icon"><img src="{% static 'pages/img/icon2-2.png' %}" alt=""></div>
+                        <div class="text"><span class="fw900">Create your profile on the MindMap</span><br><a class="text-underline" href="#">Beta Platform</a><br>and Get 20 FREE MIND tokens for inputting your education into your profile!</div>
+                    </div>
+                    <div class="item-info2">
+                        <div class="item-info2__icon"><img src="{% static 'pages/img/icon2-3.png' %}" alt=""></div>
+                        <div class="text"><span class="fw900">Buy MIND tokens in the pre-ICO or ICO  </span>You can find the full instruction <a href="#">here</a></div>
+                    </div>
+                    <div class="item-info2">
+                        <div class="item-info2__icon"><img src="{% static 'pages/img/icon2-4.png' %}" alt=""></div>
+                        <div class="text"><span class="fw900">Use your MIND tokens on the MindMap Platform!</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container margin-set6">
+            <div class="title margin-set2">Token Holders Benefits</div>
+            <div>
+                <div class="item-info3">
+                    <div class="item-info3__icon"><img src="{% static 'pages/img/icon3-1.png' %}" alt=""></div>
+                    <div class="item-info3__main">
+                        <div class="title fs30">For individuals:</div>
+                        <ul class="list-style">
+                            <li>Accessing others learning paths</li>
+                            <li>Submitting Q&A</li>
+                            <li>One-on-One tutoring sessions with subject metter experts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item-info3 item-info3_set">
+                    <div class="item-info3__icon"><img src="{% static 'pages/img/icon3-2.png' %}" alt=""></div>
+                    <div class="item-info3__main">
+                        <div class="title fs30">For business:</div>
+                        <ul class="list-style">
+                            <li>Purchasing ad space</li>
+                            <li>Employee Training MindMap Network</li>
+                            <li>Accessing our AI data set and algorithms that are advancing unsupervised machine learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-set4">
+            <div class="container">
+                <div class="title">Token Sale Bonus</div>
+                <div class="features clearfix">
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">50%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set1"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>Pre-ICO first 24 hours</div>
+                            <div class="text-set2">{# xx.xx.18-xx.xx.18 #}</div>
+                        </div>
+                    </div>
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">40%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set2"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>Pre-ICO</div>
+                            <div class="text-set2">{# xx.xx.18-xx.xx.18 #}</div>
+                        </div>
+                    </div>
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">10%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set5"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>ICO</div>
+                            <div class="text-set2">{# xx.xx.18-xx.xx.18 #}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="margin-top:30px;text-align:end;">Contribution amount bonus </div>
+                <div class="features clearfix">
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">20%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set4"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>5+ ETH bulk</div>
+                        </div>
+                    </div>
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">25%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set3"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>10+ ETH bulk</div>
+                        </div>
+                    </div>
+                    <div class="features__item" style="width: 33.3%;">
+                        <div class="margin-set4">35%</div>
+                        <div class="features__middle">
+                            <div class="features__middle_set2"></div>
+                        </div>
+                        <div class="margin-set5">
+                            <div>15+ ETH bulk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container margin-set7 wrapper-grafic">
+            <div class="col-set2">
+                <div class="title">Distribution of raised funds</div>
+                <ul class="list-info">
+                    <li>Token buyback: <span class="fw900">25%</span></li>
+                    <li>Platform development: <span class="fw900">30%</span></li>
+                    <li>Marketing and customer acquisition: <span class="fw900">30%</span></li>
+                    <li>US Federal Income Tax: <span class="fw900">25%</span></li>
+                </ul>
+            </div>
+            <div class="grafic2"><img src="{% static 'pages/img/grafic2.png' %}" alt="">
+                <div class="grafic2__elem1 grafic-elem">
+                    <div class="text-set">20%</div>
+                    <div>20% Marketing and customer acquisition</div>
+                </div>
+                <div class="grafic2__elem2 grafic-elem">
+                    <div class="text-set">25%</div>
+                    <div>Token buyback</div>
+                </div>
+                <div class="grafic2__elem3 grafic-elem color-white">
+                    <div class="text-set">25%</div>
+                    <div>US Federal Income Tax</div>
+                </div>
+                <div class="grafic2__elem4 grafic-elem">
+                    <div class="text-set">30%</div>
+                    <div>Platform development</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-set5">
+            <div class="container">
+                <div class="title">Roadmap</div>
+                <div class="roadmap">
+                    <div class="roadmap__line"></div>
+                    <div class="roadmap__item roadmap__item_1">Team assembled for project commencement</div>
+                    <div class="roadmap__item roadmap__item_2 roadmap__item_bottom"> <span>White Paper and Website development</span></div>
+                    <div class="roadmap__item roadmap__item_3">Launch of Pre-ICO</div>
+                    <div class="roadmap__item roadmap__item_4 roadmap__item_bottom"> <span>Realise of MVP</span></div>
+                    <div class="roadmap__item roadmap__item_5">Launch of ICO</div>
+                    <div class="roadmap__item roadmap__item_6 roadmap__item_bottom"> <span>Launch the learning path beta platform</span></div>
+                    <div class="roadmap__item roadmap__item_7">Forming a Global network of organized knowledge linked with the experts</div>
+                    <div class="roadmap__item roadmap__item_8 roadmap__item_bottom"> <span>Corporate knowledge organization and employee training plans</span></div>
+                    <div class="roadmap__item roadmap__item_9">Implement machine learning to let computers learn how we learn</div>
+                </div>
+            </div>
+        </div>
+	<div class="container padding-set3">
+            <div id="team-anchor" class="title margin-set2">Meet our Team</div>
+            <div class="team-container">
+                <div class="item-team">
+                    <div class="item-team__photo">
+                        <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-01.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="https://www.linkedin.com/in/joshua-olson-100" target="_blank"></a>
+                    </div>
+                    <div class="item-team__main">
+                        <div class="item-team__title">Joshua Olson</div>
+                        <div class="fs12">Founder & CEO</div>
+                        <div class="text2">
+                            <p>Joshua is a chemical engineer by trade but an entrepreneur by nature. After graduating Magna Cum Laude from Auburn University, Joshua wasted no time advancing his career. He has been successful in both corporate and private pursuits. He has an entrepreneurial portfolio of companies that he is Founder and CEO of. These companies include software development, tutoring, driving school, and real estate. Mind Map is the next evolution that encompasses everything.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-team">
+                    <div class="item-team__photo">
+                        <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-05.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="https://www.linkedin.com/in/ryan-brown-977b2272/" target="_blank"></a>
+                    </div>
+                    <div class="item-team__main">
+                        <div class="item-team__title">Ryan Brown</div>
+                        <div class="fs12">CMO</div>
+                        <div class="text2">
+                            <p>Ryan is a serial entrepreneur that enjoys building businesses from conception to fruition. He is an early adopter of cryptocurrency and blockchain technology and the host of Crypto Talk Live. As a student of life, Ryan is passionate about learning and education. When not engaging in business, he enjoys flying, the outdoors, and family.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-team">
+                    <div class="item-team__photo">
+                        <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-02.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="https://www.linkedin.com/in/jon-strabala/" target="_blank"></a>
+                    </div>
+                    <div class="item-team__main">
+                        <div class="item-team__title">Jon Strabala</div>
+                        <div class="fs12">CTO</div>
+                        <div class="text2">
+                            <p>With over 20 years of international industry experience in software development, IT, and hardware integration, this UC – Irvine MBA alumni joins our team as CTO.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-team">
+                    <div class="item-team__photo">
+                        <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-03.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="https://www.linkedin.com/in/alexxg/" target="_blank"></a>
+                    </div>
+                    <div class="item-team__main">
+                        <div class="item-team__title">Alex Galloway</div>
+                        <div class="fs12">Software Engineer</div>
+                        <div class="text2">
+                            <p>Alex is an enterprise web developer and software engineer. When not working on large projects, he focuses his energy on VR/AR development, automation, drones, and robotics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-team">
+                    <div class="item-team__photo">
+                        <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-04.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="https://www.linkedin.com/in/anthonywentzel/" target="_blank"></a>
+                    </div>
+                    <div class="item-team__main">
+                        <div class="item-team__title">Anthony Wentzel</div>
+                        <div class="fs12">Chief Engineer</div>
+                        <div class="text2">
+                            <p>For over 10 years Anthony has been in the Los Angeles area working as a project manager and developer for some of the biggest brands in media.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#        <div class="slide-set6">#}
+{#            <div class="container">#}
+{#                <div class="title margin-set2">Advisors</div>#}
+{#                <div>#}
+{#                    <div class="item-team item-team_style2">#}
+{#                        <div class="item-team__photo">#}
+{#                            <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-01.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="#" target="_blank"></a>#}
+{#                        </div>#}
+{#                        <div class="item-team__main">#}
+{#                            <div class="item-team__title">Глухов Виктор Фёдорович</div>#}
+{#                            <div class="fs12">CEO, Co-Founder</div>#}
+{#                            <div class="text2">#}
+{#                                <p>Более чем 20-летний опыт работы в крупных международных инвестиционных банках. Специалист по фундаментальным исследованиям,</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item-team item-team_style2">#}
+{#                        <div class="item-team__photo">#}
+{#                            <div class="item-team__photo__wrapper"><img src="{% static 'pages/img/team-01.png' %}" alt=""></div><a class="item-soc item-soc_ln" href="#" target="_blank"></a>#}
+{#                        </div>#}
+{#                        <div class="item-team__main">#}
+{#                            <div class="item-team__title">Глухов Виктор Фёдорович</div>#}
+{#                            <div class="fs12">CEO, Co-Founder</div>#}
+{#                            <div class="text2">#}
+{#                                <p>Более чем 20-летний опыт работы в крупных международных инвестиционных банках. Специалист по фундаментальным исследованиям,</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="container">#}
+{#            <div class="title">Partners</div>#}
+{#            <div>#}
+{#                <div class="item-partner"><span><img src="{% static 'pages/img/logo-partner-01.png' %}" alt=""></span></div>#}
+{#                <div class="item-partner"><span><img src="{% static 'pages/img/logo-partner-02.png' %}" alt=""></span></div>#}
+{#                <div class="item-partner"><span><img src="{% static 'pages/img/logo-partner-03.png' %}" alt=""></span></div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% if now %}
+        <script>
+            var END = {{ end }};
+            $(document).ready(function() {
+                CDT(END);
+            })
+        </script>
+    {% endif %}
+{% endblock %}

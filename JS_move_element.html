@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--  Use Alt L Alt O to launch webpage using Live Server Plug-in-->
+<html lan="en">
+
+<head>
+    <title>Move to Click Position</title> 
+    <style> 
+    body {
+        background-color: #FFF;
+        padding: 0px;
+        margin: 0;
+    }
+    
+    #contentContainer {
+        width: 550px;   
+        height: 350px;
+        border: 15px #EDEDED solid;
+        overflow: hidden;
+        background-color: #F2F2F2;
+        cursor: pointer;
+    }
+    
+    #thing { 
+        width: 75px;
+        height: 75px;
+        background-color: rgb(255, 207, 0);
+        border-radius: 50%;
+        border: 15px rgb(255, 199, 0) solid;
+
+        transform: translate3d(50px, 50px, 0); 
+        transition: transform .3s cubic-bezier(.5, 0, 1, 1);
+        }
+    </style> <!--   Ideas: make contentContainer fit window
+                    translate3d not needed here, just syntax example
+                    transition: transform adds the movement animation for 3 sec duration -->
+</head>
+        
+        
+
+<body style="text-align: center; background-color: lightgray;">                      <!-- attributes here for entire body -->
+    <h1 style="color: blue; font: italic bold 30px Arial;">'Move Element'</h1>          <!-- add style atribute color; add multiple attributes after ';'-->
+    
+    <div id="contentContainer">
+        <div id="thing"></div>
+    </div>
+
+    <script>
+        //variables pointing to HTML elements
+        var theThing = document.querySelector("#thing");
+        var container = document.querySelector("#contentContainer");
+
+
+        //make html container width of screen
+        function containerFullWidth(){
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var containerBorder = container.style.border;   //TODO get this to work
+            containerBorder = 15;                           //delete
+            var containerWidthCalced = w - 2 * containerBorder;
+            container.style.width = containerWidthCalced + "px";
+        }
+        containerFullWidth();       //TODO: run this when screen resized.
+        //get mouse click possition
+        container.addEventListener("click", getClickPosition, false);
+
+        //define getClickPosition event handler
+        function getClickPosition(e) {
+
+            //use getPosition(element), pass it container and it will return 
+            //  offest X and Y to use below.
+            var parentPosition = getPosition(container);
+
+            var xPosition = e.clientX - parentPosition.x - (theThing.offsetWidth / 2);      //properties of event. shift the movement of 
+            var yPosition = e.clientY - parentPosition.y - (theThing.offsetHeight / 2);     //circle (thing) to center rather than top left
+
+            //build transform: translate3d(x,y,z) html command in javascript
+            var translate3dValue = "translate3d("+ xPosition + "px,"+ yPosition + "px, 0)";
+            //excecute transform action on object
+            theThing.style.transform = translate3dValue; 
+        }
+
+        // Helper function to get an element's exact position.
+        // Pass function paramater el and it determines this elements possition on page 
+        //      taking into effect scroll, offset, etc.
+        // Pass it container object and it will return 
+        //      offest X and Y to use in get mouse possition function.
+        // https://www.kirupa.com/html5/getting_mouse_click_position.htm#tutorialInformation
+        function getPosition(el) {
+            var xPosition = 0;
+            var yPosition = 0;
+ 
+            while (el) {
+                if (el.tagName == "BODY") {
+                    // deal with browser quirks with body/window/document and page scroll
+                    var xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
+                    var yScrollPos = el.scrollTop || document.documentElement.scrollTop;
+                
+                    xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
+                    yPosition += (el.offsetTop - yScrollPos + el.clientTop);
+                } else {
+                    xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+                    yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+                }
+                el = el.offsetParent;
+            }
+              return {
+                x: xPosition,
+                y: yPosition
+            };
+        }
+
+    </script>
+</body>
+</html>
